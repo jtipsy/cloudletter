@@ -1,0 +1,19 @@
+{
+    "name": "jtipsy/cloudletter",
+    "description": "基于网易云课堂直播的 PHP SDK",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "jtipsy",
+            "email": "jtipsy@163.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Jtipsy\\Cloudletter\\": "./src"
+        }
+    }
+}
