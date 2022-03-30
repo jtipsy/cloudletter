@@ -17,6 +17,8 @@ interface NeteaseInterface
 
     public function shutRoom($roomUuid);
 
+    public function snapshotRoom($roomUuid,$token,$user);
+
     public function recordPlayBack($roomUuid,$rtcCid);
 
 }

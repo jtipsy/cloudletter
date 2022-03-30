@@ -77,6 +77,19 @@ class YunXin extends Base
     }
 
     /*
+     * 房间快照
+     * @param string roomUuid
+     * @param string token
+     * @param string user
+     * @return mixed
+     */
+    public function roomSnapshot(string $roomUuid, string $token = null, string $user = null)
+    {
+        $url = $this->config['appHost'].'apps/'.$this->config['appKey'].'/v1/rooms/'.$roomUuid.'/snapshot';
+        return $this->httpGet($url,[],$this->authHeaders('application/json;charset=utf-8',$token,$user));
+    }
+
+    /*
      * 获取回放
      * @param string roomUuid
      * @param string rtcCid
@@ -149,11 +162,17 @@ class YunXin extends Base
      * @param string contentType
      * @return array
      */
-    protected function authHeaders(string $contentType)
+    protected function authHeaders(string $contentType, string $token = null, string $user = null)
     {
         return [
+            'AppKey'       => $this->config['appKey'],
+            'Nonce'        => $this->nonce(),
+            'CurTime'      => $this->curTime(),
+            'CheckSum'     => $this->checkSum(),
             'Content-Type' => $contentType,
             'Authorization' => 'Basic '.$this->config['appAuthorization'],
+            'token' => $token,
+            'user' => $user,
             'deviceId' => $this->uuid(),
         ];
     }

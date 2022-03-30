@@ -57,6 +57,14 @@ class Netease extends YunXin implements NeteaseInterface
         return $this->roomShut($roomUuid);
     }
 
+    public function snapshotRoom($roomUuid,$token,$user)
+    {
+        if(!$roomUuid && !$token && !$user){
+            throw new InvalidArgumentException('Check whether the parameters are configured');
+        }
+        return $this->roomSnapshot($roomUuid,$token,$user);
+    }
+
     public function recordPlayBack($roomUuid,$rtcCid)
     {
         if(!$roomUuid && !$rtcCid){
